@@ -64,7 +64,7 @@ df.county <- raceiatdat %>%
 
 # create map
 county_choropleth(df.county, 
-                  title = "Average IAT by County", 
+                  title = "Average Race IAT Score by County", 
                   legend = "Race IAT Score")
 
 
@@ -78,18 +78,16 @@ data(state.regions)
 glimpse(state.regions)
 
 # prepare data for state_choropleth()
-df.state <- data %>% 
-  filter(ethnicity == "White") %>% 
+df.state <- raceiatdat %>% 
   group_by(state.name) %>% 
-  summarize(value = mean(iat, na.rm = TRUE)) %>% 
+  summarize(value = mean(Implicit, na.rm = TRUE)) %>% 
   select(region = state.name, 
          value)
 
 # create map
 state_choropleth(df.state, 
-                 title = "Average Implicit Bias by State (2002-2013; White Participants)", 
+                 title = "Average Race IAT Score by State", 
                  legend = "Race IAT Score")
-
 
 
 # {references} ------------------------------------------------------------
