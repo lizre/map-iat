@@ -1,4 +1,6 @@
-# mapping iat to state/county
+# This code was developed by Nick Ungson and modified by Liz Redford to map Implicit Association Test scores to U.S. states and counties.
+# All code, data, and documentation at https://github.com/lizredford/map-iat.
+ 
 
 # {setup} -----------------------------------------------------------------
 
@@ -35,7 +37,7 @@ raceiatdat <- merge(raceiatdat, state_info,
 
 # Some states don't have state numbers, which chloropleth won't like. Omit rows with missing data here.
 raceiatdat <- na.omit(raceiatdat)
-# leaves 32,774 cases
+# leaves 65,636 cases
 
 # choroplethr also needs combined state/county fips to map by county
 # however, county number needs to be 3 digits, so leading zeroes must be added 
