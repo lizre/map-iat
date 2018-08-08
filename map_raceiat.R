@@ -15,11 +15,11 @@ library(here)
 
 # {import data} -----------------------------------------------------------
 
-# Import data with geographic variable
-raceiatdat <- read.csv("raceiatdat.csv")
+# Import data with geographic variables from Github
+raceiatdat <- read.csv(file = "https://github.com/lizredford/map-iat/blob/master/raceiatdat.csv?raw=true") # transform GitHub url from 'View Raw' hyperlink into data frame
 
 # this .csv contains all state abbrevs, state nos., and lowercase state names
-state_info <- read.csv("state_info.csv")
+state_info <- read.csv(file = "https://github.com/lizredford/map-iat/blob/master/state_info.csv?raw=true") # transform GitHub url from 'View Raw' hyperlink into data frame
 
 # prep for choroplethr ----------------------------------------------------
 
