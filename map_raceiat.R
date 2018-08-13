@@ -35,7 +35,7 @@ raceiatdat <- merge(raceiatdat, state_info,
 # choropleth needs lower-case state name to map by state 
 # (already in data from state_info)
 
-# Some states don't have state numbers, which chloropleth won't like. Omit rows with missing data here.
+# Some states don't have state numbers, which chloropleth won't like. Omit rows with missing data here
 raceiatdat <- na.omit(raceiatdat)
 # leaves 65,636 cases
 
@@ -101,3 +101,21 @@ state_choropleth(df.state,
 # changing color scheme in choroplethr
 # source: https://www.r-bloggers.com/advanced-choroplethr-changing-color-scheme/
 
+
+
+# Example of what data and map should look like
+# from https://ggplot2.tidyverse.org/reference/map_data.html
+
+if (require("maps")) {
+states <- map_data("state")
+arrests <- USArrests
+
+choro <- merge(states, arrests, sort = FALSE, by = "region")
+choro <- choro[order(choro$order), ]
+
+ggplot(choro, aes(long, lat)) +
+  geom_polygon(aes(group = group, fill = assault / murder)) +
+  coord_map("albers",  at0 = 45.5, lat1 = 29.5)
+}
+
+View(choro)
