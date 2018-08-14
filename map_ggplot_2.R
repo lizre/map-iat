@@ -52,3 +52,21 @@ ggplot() + geom_polygon(data = raceiatdat_states2,
                         color = "white") + 
   coord_map("albers",  at0 = 45.5, lat1 = 29.5)
 
+
+
+# Example of what data and map should look like for ggplot
+# from https://ggplot2.tidyverse.org/reference/map_data.html
+
+if (require("maps")) {
+states <- map_data("state")
+arrests <- USArrests
+
+choro <- merge(states, arrests, sort = FALSE, by = "region")
+choro <- choro[order(choro$order), ]
+
+ggplot(choro, aes(long, lat)) +
+  geom_polygon(aes(group = group, fill = assault / murder)) +
+  coord_map("albers",  at0 = 45.5, lat1 = 29.5)
+}
+
+View(choro)
