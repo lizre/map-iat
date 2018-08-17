@@ -36,7 +36,6 @@ race_grouped_bystate <- raceiatdat %>%
 
 
 ### Get lat & long info -----
-<<<<<<< HEAD
 
 # this "states" dataframe has the lat & long info needed for mapping.
 states <- map_data("state")
@@ -48,7 +47,6 @@ race_grouped_bystate <- inner_join(race_grouped_bystate,
                                 states, 
                                 by = "region") 
 
-=======
 
 # this "states" dataframe has the lat & long info needed for mapping.
 states <- map_data("state")
