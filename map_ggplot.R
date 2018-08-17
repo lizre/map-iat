@@ -94,8 +94,6 @@ states %>%
   ggplot() + geom_polygon(aes(x=long, y=lat, group = group))
 
 
-
-
 ### Can add this later to make dataset smaller if needed -----
 
 # Take random sample of fewer rows so it runs faster while I'm testing ggplot
