@@ -59,7 +59,7 @@ ggplot() + geom_polygon(data = race_grouped_bystate,
   coord_map("albers",  at0 = 45.5, lat1 = 29.5)
 
 
-# Example of what data and map should look like for ggplot
+# Example of what data and map should look like for ggplot -----
 # from https://ggplot2.tidyverse.org/reference/map_data.html
 
 if (require("maps")) {
@@ -84,7 +84,7 @@ states %>%
 
 
 ### Can add this later to make dataset smaller if needed -----
-
+ 
 # Take random sample of fewer rows so it runs faster while I'm testing ggplot
 raceiatdat <- raceiatdat[sample(1:nrow(raceiatdat), 50000, replace = FALSE),]  
 
