@@ -72,6 +72,7 @@ ggplot() + geom_polygon(data = race_grouped_bystate,
   coord_map("albers",  at0 = 45.5, lat1 = 29.5)
 
 
+
 # Example of what data and map should look like for ggplot -----
 # from https://ggplot2.tidyverse.org/reference/map_data.html
 
