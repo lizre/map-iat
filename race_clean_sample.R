@@ -8,7 +8,7 @@ raceiatdat <- read_sav("raceiat_cleaned.sav") %>% select(Implicit, Explicit, rac
 View(raceiatdat)
 #  N = 2 219 014
 
-raceiatdat <- raceiatdat[sample(1:nrow(raceiatdat), 600000, replace = FALSE),] # Take random sample of 600000 rows
+raceiatdat <- raceiatdat[sample(1:nrow(raceiatdat), 1000000, replace = FALSE),] # Take random sample of 1000000 rows
 
 ### Write data to csv to export ##### ================
 library(readr)
