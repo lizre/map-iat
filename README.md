@@ -4,7 +4,11 @@ These maps were made using the publicly-available Project Implicit <a href = "ht
 
 race_clean_sample.R was used to create a dataset small enough to be handled by R. This smaller dataset is the one posted here in this repo (raceiatdat.csv).
 
+# Using ggplot2
+
 map_ggplot.R uses the package ggplot2 and imports raceiatdat.csv from this repo. It was developed by Liz Redford.
+
+# Using chloroplethr
 
 map_raceiat.R uses the package chloroplethr and imports raceiatdat.csv from this repo. It was developed by Nick Ungson and modified by Liz Redford. It creates the following maps:
 
