@@ -79,6 +79,7 @@ ggplot() + geom_polygon(data = race_grouped_bystate,
                         color = "white") +
   theme(legend.position = "bottom") +
   guides(fill = guide_colorbar(barwidth = 20, barheight = 1.0)) +
+  coord_map("albers",  at0 = 45.5, lat1 = 29.5) +
   geom_text(data = statelabels, aes(long, lat, label = state), size = 4.0) 
 
 ## # ggplot with value labels -----
