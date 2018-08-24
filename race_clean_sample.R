@@ -13,3 +13,4 @@ raceiatdat <- raceiatdat[sample(1:nrow(raceiatdat), 600000, replace = FALSE),] #
 ### Write data to csv to export ##### ================
 library(readr)
 write_csv(raceiatdat, "raceiatdat.csv") # Export data to use for mapping
+
