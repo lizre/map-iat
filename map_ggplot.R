@@ -79,7 +79,7 @@ ggplot() + geom_polygon(data = race_grouped_bystate,
                         color = "white") +
   theme(legend.position = "bottom") +
   guides(fill = guide_colorbar(barwidth = 20, barheight = 1.0)) +
-  geom_text(data=statelabels, aes(long, lat, label = state), size = 4.0) 
+  geom_text(data = statelabels, aes(long, lat, label = state), size = 4.0) 
 
 ## # ggplot with value labels -----
 
@@ -93,7 +93,6 @@ race_grouped_bystate2 <- raceiatdat %>%
 valuelabels_bystate <- merge(state_info, race_grouped_bystate2, 
               by = "region", 
               all = TRUE)
-valuelabels_bystate$state <- valuelabels_bystate$region
 valuelabels_bystate <- valuelabels_bystate %>% select(state, state.name, value)
 valuelabels_bystate <- merge(valuelabels_bystate, statelabels, 
               by = "state",
@@ -108,7 +107,7 @@ ggplot() + geom_polygon(data = race_grouped_bystate,
   theme(legend.position = "bottom") +
   guides(fill = guide_colorbar(barwidth = 20, barheight = 1.0)) +
   coord_map("albers",  at0 = 45.5, lat1 = 29.5) +
-  geom_text(data=valuelabels_bystate, 
+  geom_text(data = valuelabels_bystate, 
             aes(long, lat, label = value), 
             size = 4.0) 
 
