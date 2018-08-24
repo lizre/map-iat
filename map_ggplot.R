@@ -33,11 +33,10 @@ race_grouped_bystate <- raceiatdat %>%
   select(region = state.name, 
          value)
 
-### ggplot: Get lat & long info -----
+### Get lat & long info -----
 
 # this "states" dataframe has the lat & long info needed for mapping.
 states <- map_data("state")
-
 states$state.name <- states$region
 
 # join IAT + lowercase names to df that has lat & long
@@ -45,10 +44,75 @@ race_grouped_bystate <- inner_join(race_grouped_bystate,
                                 states, 
                                 by = "region") 
 
+## # ggplot without labels -----
+
 ggplot() + geom_polygon(data = race_grouped_bystate, 
                         aes(x = long, y = lat, group = group, fill = value), 
                         color = "white") + 
-  coord_map("albers",  at0 = 45.5, lat1 = 29.5)
+  coord_map("albers",  at0 = 45.5, lat1 = 29.5) +
+  theme(legend.position = "bottom") +
+  guides(fill = guide_colorbar(barwidth = 20, barheight = 1.0)) 
+
+
+## # ggplot with state labels -----
+
+# Use state_info to add state abbreviations to be used for labelling
+state_info$region <- state_info$state.name
+race_grouped_bystate <- merge(race_grouped_bystate, state_info, by = "region")
+
+# Create dataframe of labels
+statelabels <- aggregate(cbind(long, lat) ~ state, data = race_grouped_bystate, FUN = function(x) mean(range(x)))
+
+# Some state labels aren't in good positions; can change here 
+# View(statelabels)
+statelabels[12, c(2:3)] <- c(-114.5, 43.5)  # alter idaho's coordinates
+statelabels[17, c(2:3)] <- c(-92.5, 31.75)  # alter louisiana's coordinates
+statelabels[21, c(2:3)] <- c(-84.5, 42.75)  # alter michigan's coordinates
+statelabels[9, c(2, 3)] <- c(-81.5, 28.75)  # alter florida's angle and coordinates
+statelabels[44, c(2, 3)] <- c(-79, 37)  # alter virginia's angle and coordinates
+statelabels[45, c(2, 3)] <- c(-72.47, 45.3) # vermont
+statelabels[29, c(2, 3)] <- c(-71.64, 43.5) # nh
+statelabels[18, c(2, 3)] <- c(-70, 42.5) # ma
+
+ggplot() + geom_polygon(data = race_grouped_bystate, 
+                        aes(x = long, y = lat, group = group, fill = value), 
+                        color = "white") +
+  theme(legend.position = "bottom") +
+  guides(fill = guide_colorbar(barwidth = 20, barheight = 1.0)) +
+  geom_text(data=statelabels, aes(long, lat, label = state), size = 4.0) 
+
+## # ggplot with value labels -----
+
+# Add IAT values to labels coordinates.
+race_grouped_bystate2 <- raceiatdat %>% 
+  group_by(state.name) %>% 
+  summarize(value = mean(Implicit, na.rm = TRUE)) %>% 
+  select(region = state.name, 
+         value)
+
+valuelabels_bystate <- merge(state_info, race_grouped_bystate2, 
+              by = "region", 
+              all = TRUE)
+valuelabels_bystate$state <- valuelabels_bystate$region
+valuelabels_bystate <- valuelabels_bystate %>% select(state, state.name, value)
+valuelabels_bystate <- merge(valuelabels_bystate, statelabels, 
+              by = "state",
+              all = TRUE)
+
+valuelabels_bystate$value <- round(valuelabels_bystate$value, 2) # round for labelling map
+valuelabels_bystate <- na.omit(valuelabels_bystate)
+
+ggplot() + geom_polygon(data = race_grouped_bystate, 
+                        aes(x = long, y = lat, group = group, fill = value), 
+                        color = "white") +
+  theme(legend.position = "bottom") +
+  guides(fill = guide_colorbar(barwidth = 20, barheight = 1.0)) +
+  coord_map("albers",  at0 = 45.5, lat1 = 29.5) +
+  geom_text(data=valuelabels_bystate, 
+            aes(long, lat, label = value), 
+            size = 4.0) 
+
+
 
 # Example of what data and map should look like for ggplot -----
 # from https://ggplot2.tidyverse.org/reference/map_data.html
@@ -71,3 +135,4 @@ states %>%
   filter(region == "alabama") %>%
   ggplot() + geom_polygon(aes(x=long, y=lat, group = group))
 
+# labelling chloropleths in ggplot from https://trinkerrstuff.wordpress.com/2013/07/05/ggplot2-chloropleth-of-supreme-court-decisions-an-tutorial/
