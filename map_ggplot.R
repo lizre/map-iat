@@ -101,6 +101,11 @@ valuelabels_bystate <- merge(valuelabels_bystate, statelabels,
 
 valuelabels_bystate$value <- round(valuelabels_bystate$value, 2) # round for labelling map
 valuelabels_bystate <- na.omit(valuelabels_bystate)
+View(valuelabels_bystate)
+
+# remove leading 0s from values to take up less space on map
+library(weights)
+valuelabels_bystate$value <- rd(valuelabels_bystate$value) 
 
 ggplot() + geom_polygon(data = race_grouped_bystate, 
                         aes(x = long, y = lat, group = group, fill = value), 
@@ -113,7 +118,7 @@ ggplot() + geom_polygon(data = race_grouped_bystate,
             aes(long, lat, label = value), 
             size = 4.0) 
 
-ggsave("plot.png", width = 8, height = 5, units = c("in"), dpi = 300)
+ggsave("raceiat_bystate_ggplot_valuelabels.png", width = 8, height = 5, units = c("in"), dpi = 300)
 
 # Use this to keep latitude & longtitude lines but remove axis titles and text  
 #        axis.text.x = element_blank(),
