@@ -9,7 +9,7 @@ race_clean_sample.R was used to create a dataset small enough to be handled by R
 map_ggplot.R uses the package ggplot2 and imports raceiatdat.csv from this repo. It was developed by Liz Redford. It includes coordinates for state/value labels that can be used or modified for labeling any ggplot chloropleth of US states.
 It creates three maps: (1) one that does not label states, (2) one that labels states by their abbreviations; and (3) one that labels states by their IAT scores, as shown here:
 
-<img src="https://github.com/lizredford/map-iat/blob/master/raceiat_bystate_ggplot_valuelabels.png" width="850">
+<img src="https://github.com/lizredford/map-iat/blob/master/raceiat_bystate_valuelabels.png" width="850">
 
 # Using chloroplethr
 
