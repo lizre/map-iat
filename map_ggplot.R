@@ -105,6 +105,7 @@ valuelabels_bystate <- na.omit(valuelabels_bystate)
 ggplot() + geom_polygon(data = race_grouped_bystate, 
                         aes(x = long, y = lat, group = group, fill = value), 
                         color = "white") +
+  theme_void() +
   theme(legend.position = "bottom") +
   guides(fill = guide_colorbar(barwidth = 20, barheight = 1.0)) +
   coord_map("albers",  at0 = 45.5, lat1 = 29.5) +
@@ -112,7 +113,14 @@ ggplot() + geom_polygon(data = race_grouped_bystate,
             aes(long, lat, label = value), 
             size = 4.0) 
 
+ggsave("plot.png", width = 8, height = 5, units = c("in"), dpi = 300)
 
+# Use this to keep latitude & longtitude lines but remove axis titles and text  
+#        axis.text.x = element_blank(),
+#        axis.text.y = element_blank(),
+#        axis.ticks = element_blank(),
+#        axis.title.y = element_blank(),
+ #       axis.title.x = element_blank())
 
 # Example of what data and map should look like for ggplot -----
 # from https://ggplot2.tidyverse.org/reference/map_data.html
