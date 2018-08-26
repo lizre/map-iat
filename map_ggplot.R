@@ -101,15 +101,18 @@ valuelabels_bystate <- merge(valuelabels_bystate, statelabels,
 
 valuelabels_bystate$value <- round(valuelabels_bystate$value, 2) # round for labelling map
 valuelabels_bystate <- na.omit(valuelabels_bystate)
-View(valuelabels_bystate)
 
 # remove leading 0s from values to take up less space on map
 library(weights)
 valuelabels_bystate$value <- rd(valuelabels_bystate$value) 
 
+# change variable name to one I'd prefer to print on ggplot image
+valuelabels_bystate$`IAT score` <- valuelabels_bystate$value
+
 ggplot() + geom_polygon(data = race_grouped_bystate, 
                         aes(x = long, y = lat, group = group, fill = value), 
                         color = "white") +
+  labs(fill='IAT score') +
   theme_void() +
   theme(legend.position = "bottom") +
   guides(fill = guide_colorbar(barwidth = 20, barheight = 1.0)) +
@@ -118,7 +121,7 @@ ggplot() + geom_polygon(data = race_grouped_bystate,
             aes(long, lat, label = value), 
             size = 4.0) 
 
-ggsave("raceiat_bystate_ggplot_valuelabels.png", width = 8, height = 5, units = c("in"), dpi = 300)
+ggsave("raceiat_bystate_valuelabels.png", width = 8, height = 5, units = c("in"), dpi = 300)
 
 # Use this to keep latitude & longtitude lines but remove axis titles and text  
 #        axis.text.x = element_blank(),
@@ -127,25 +130,7 @@ ggsave("raceiat_bystate_ggplot_valuelabels.png", width = 8, height = 5, units = 
 #        axis.title.y = element_blank(),
  #       axis.title.x = element_blank())
 
-# Example of what data and map should look like for ggplot -----
-# from https://ggplot2.tidyverse.org/reference/map_data.html
 
-if (require("maps")) {
-states <- map_data("state")
-arrests <- USArrests
-
-choro <- merge(states, arrests, sort = FALSE, by = "region")
-choro <- choro[order(choro$order), ]
-
-ggplot(choro, aes(long, lat)) +
-  geom_polygon(aes(group = group, fill = assault / murder)) +
-  coord_map("albers",  at0 = 45.5, lat1 = 29.5)
-}
-
-View(choro)
-
-states %>%
-  filter(region == "alabama") %>%
-  ggplot() + geom_polygon(aes(x=long, y=lat, group = group))
+### References -----
 
 # labelling chloropleths in ggplot from https://trinkerrstuff.wordpress.com/2013/07/05/ggplot2-chloropleth-of-supreme-court-decisions-an-tutorial/
