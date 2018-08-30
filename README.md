@@ -21,7 +21,7 @@ map_raceiat.R uses the package chloroplethr and imports raceiatdat.csv from this
 
 # Known issues
 
-- The ggplot map labels could use some nudging for readability, and the lat and long axis labels are unnecessary
+- The ggplot map labels could use some nudging for readability
 - Should probably remove DC label from ggplot maps
 
 
