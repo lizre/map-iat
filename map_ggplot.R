@@ -70,13 +70,20 @@ statelabels[17, c(2:3)] <- c(-92.5, 31.75)  # alter louisiana's coordinates
 statelabels[21, c(2:3)] <- c(-84.5, 42.75)  # alter michigan's coordinates
 statelabels[9, c(2, 3)] <- c(-81.5, 28.75)  # alter florida's angle and coordinates
 statelabels[44, c(2, 3)] <- c(-79, 37)      # alter virginia's angle and coordinates
-statelabels[45, c(2, 3)] <- c(-72.47, 45.3) # vermont
+statelabels[45, c(2, 3)] <- c(-72.87, 45.7) # vermont
 statelabels[29, c(2, 3)] <- c(-71.64, 43.5) # nh
 statelabels[18, c(2, 3)] <- c(-70, 42.5)    # ma
 statelabels[32, c(2, 3)] <- c(-116.5, 40)   # nevada 
 statelabels[25, c(2, 3)] <- c(-109, 47)     # montana
 statelabels[35, c(2, 3)] <- c(-97.5, 35.5)  # oklahoma
 statelabels[22, c(2, 3)] <- c(-94, 47)      # minnesota
+statelabels[38, c(2, 3)] <- c(-71, 41.3)    # ri
+statelabels[30, c(2, 3)] <- c(-73.22, 40.15)    # nj
+statelabels[8, c(2, 3)] <- c(-74.42, 38.9)    # de
+statelabels[19, c(2, 3)] <- c(-74.2, 38)    # md
+statelabels[7, c(2, 3)] <- c(-74.2, 37.25)    # dc
+statelabels[26, c(2, 3)] <- c(-79.9, 35.6)    # nc
+statelabels[44, c(2, 3)] <- c(-79, 37.5)    # va
 
 ggplot() + geom_polygon(data = race_grouped_bystate, 
                         aes(x = long, y = lat, group = group, fill = value), 
