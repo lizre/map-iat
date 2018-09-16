@@ -81,9 +81,11 @@ statelabels[38, c(2, 3)] <- c(-71, 41.3)    # ri
 statelabels[30, c(2, 3)] <- c(-73.22, 40.15)    # nj
 statelabels[8, c(2, 3)] <- c(-74.42, 38.9)    # de
 statelabels[19, c(2, 3)] <- c(-74.2, 38)    # md
-statelabels[7, c(2, 3)] <- c(-74.2, 37.25)    # dc
+statelabels[7, c(2, 3)] <- c(-74.2, 37)    # dc
 statelabels[26, c(2, 3)] <- c(-79.9, 35.6)    # nc
 statelabels[44, c(2, 3)] <- c(-79, 37.5)    # va
+statelabels[16, c(2, 3)] <- c(-85.68584, 37.5)    # ky
+statelabels[4, c(2, 3)] <- c(-120.25830, 37.27950)    # ca
 
 ggplot() + geom_polygon(data = race_grouped_bystate, 
                         aes(x = long, y = lat, group = group, fill = value), 
