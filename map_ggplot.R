@@ -10,7 +10,7 @@ raceiatdat <- read.csv(file = "https://github.com/lizredford/map-iat/blob/master
 # this .csv contains all state abbrevs, state nos., and lowercase state names
 state_info <- read.csv(file = "https://github.com/lizredford/map-iat/blob/master/state_info.csv?raw=true") # transform GitHub url from 'View Raw' hyperlink into data frame
 
-# prep for choroplethr ----------------------------------------------------
+# prep for mappning ----------------------------------------------------
 
 raceiatdat$state <- raceiatdat$STATE # Change "state" variable to all lowercase to match "state info" table, so that it can be merged with that table
 
